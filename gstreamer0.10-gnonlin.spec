@@ -7,7 +7,7 @@
 %define		gstpb_req_ver	0.10.30
 Summary:	GStreamer extension library for non-linear editing
 Summary(pl.UTF-8):	Biblioteka rozszerzenia GStreamera do edycji nieliniowej
-Name:		gstreamer-gnonlin
+Name:		gstreamer0.10-gnonlin
 Version:	0.10.17
 Release:	2
 License:	LGPL v2+
@@ -17,14 +17,14 @@ Source0:	http://gstreamer.freedesktop.org/src/gnonlin/gnonlin-%{version}.tar.bz2
 URL:		http://gnonlin.sourceforge.net/
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.22
-BuildRequires:	gstreamer-devel >= %{gst_req_ver}
-BuildRequires:	gstreamer-plugins-base-devel >= %{gstpb_req_ver}
+BuildRequires:	gstreamer0.10-devel >= %{gst_req_ver}
+BuildRequires:	gstreamer0.10-plugins-base-devel >= %{gstpb_req_ver}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	pkgconfig
 BuildRequires:	python >= 2.1
 Requires:	glib2 >= 1:2.22
-Requires:	gstreamer >= %{gst_req_ver}
-Requires:	gstreamer-plugins-base >= %{gstpb_req_ver}
+Requires:	gstreamer0.10 >= %{gst_req_ver}
+Requires:	gstreamer0.10-plugins-base >= %{gstpb_req_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -55,7 +55,7 @@ Dokumentacja API Gnonlin.
 %configure \
 	--disable-silent-rules \
 	--disable-static \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	--enable-gtk-doc%{!?with_apidocs:=no} \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
